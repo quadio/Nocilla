@@ -76,7 +76,13 @@
 
 -(BOOL)matchesHeaders:(id<LSHTTPRequest>)request {
     for (NSString *header in self.headers) {
-        if (![[request.headers objectForKey:header] isEqualToString:[self.headers objectForKey:header]]) {
+        id requestHeaderValue = [[request headers] objectForKey:header];
+        id stubbedHeaderValue = [self.headers objectForKey:header];
+        
+        if ([@"*" isEqualToString:stubbedHeaderValue]) {
+            continue;
+        }
+        if (![requestHeaderValue isEqualToString:stubbedHeaderValue]) {
             return NO;
         }
     }
