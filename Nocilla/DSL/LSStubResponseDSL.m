@@ -36,4 +36,11 @@
         return self;
     };
 }
+
+- (ResponseWithDataBodyMethod)withDataBody {
+    return ^(NSData *body) {
+        self.response.body = body;
+        return self;
+    };
+}
 @end
