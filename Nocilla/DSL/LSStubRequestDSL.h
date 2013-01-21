@@ -7,6 +7,7 @@
 typedef LSStubRequestDSL *(^WithHeaderMethod)(NSString *, NSString *);
 typedef LSStubRequestDSL *(^WithHeadersMethod)(NSDictionary *);
 typedef LSStubRequestDSL *(^AndBodyMethod)(NSString *);
+typedef LSStubRequestDSL *(^AndBodyDataMethod)(NSData *);
 typedef LSStubResponseDSL *(^AndReturnMethod)(NSInteger);
 
 @interface LSStubRequestDSL : NSObject
@@ -14,15 +15,8 @@ typedef LSStubResponseDSL *(^AndReturnMethod)(NSInteger);
 - (WithHeaderMethod)withHeader;
 - (WithHeadersMethod)withHeaders;
 - (AndBodyMethod)withBody;
+- (AndBodyDataMethod)withDataBody;
 - (AndReturnMethod)andReturn;
 @end
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-    
 LSStubRequestDSL * stubRequest(NSString *method, NSString *url);
-    
-#ifdef __cplusplus
-}
-#endif

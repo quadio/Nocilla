@@ -40,6 +40,13 @@
     };
 }
 
+- (AndBodyDataMethod)withDataBody {
+    return ^(NSData *body) {
+        self.request.body = body;
+        return self;
+    };
+}
+
 - (AndReturnMethod)andReturn {
     return ^(NSInteger statusCode) {
         self.request.response = [[LSStubResponse alloc] initWithStatusCode:statusCode];
